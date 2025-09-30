@@ -1,14 +1,29 @@
 <!doctype html>
-<title>OSCUSB Settings</title>
-<h1>Settings page for OSC USB</h1>
+<html>
+<head>
+  <title>OSCUSB Settings</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
 
-<form action="" method="post" class="form-example">
-  <div class="form-example">
-    <label for="name">enter your name: </label>
-    <input type="text" name="name" id="name" required />
-    <div class="form-example">
-      <input type="submit" value="submit" />
+<body>
+  <h1>Settings page for OSC USB</h1>
+  
+  <form action="" method="post" class="form-settings">
+    
+    {% for s in settings %}
+    <div class="form-settings "id="{{s}}">
+      <label for="{{s}}">
+	{{ settings[s].descr }}
+	(current value: {{ settings[s].value }})
+      </label>
+      <span class="line"></span>
+      <input type="text" name="{{s}}" id="{{s}}" value="{{ settings[s].value }}" />
     </div>
-  </div>
-</form>
+    {% endfor %}
+    
+    <div class="form-example">
+      <input type="submit" value="submit changes" />
+    </div>
+  </form>
+</body>
 </html>

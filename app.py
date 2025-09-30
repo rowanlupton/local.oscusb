@@ -13,9 +13,14 @@ app = Flask(__name__)
 
 @app.route("/", methods=['GET', 'POST'])
 def settings():
+    with open('settings.json', 'r') as f:
+        settings = json.load(f)
+    f.close()
+    
     if request.method == 'POST':
+        print(request.form)
         return redirect('/')
-        #return request.form['name']
+        #return request.form
     else:
-        return render_template('settings.html')
+        return render_template('settings.html', settings=settings)
 

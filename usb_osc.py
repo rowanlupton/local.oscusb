@@ -26,12 +26,12 @@ class usbOSC(Thread):
           
       if event.type.is_keyboard() and event.key_state == KeyState.PRESSED:
         print(event.device)
-        if event.key == settings['input_value']:
+        if event.key == settings['input_value']['value']:
           print('go:',event.key_state)
           
-          client = udp_client.SimpleUDPClient(settings['eos_ip'], settings['eos_port'])
+          client = udp_client.SimpleUDPClient(settings['eos_ip']['value'], settings['eos_port']['value'])
           client.send_message('/eos/fader/1/config/10','')
-          client.send_message(settings['osc_out'],settings['osc_arg'])
+          client.send_message(settings['osc_out']['value'],settings['osc_arg']['value'])
         else:
           print('wrong input')
       elif event.type.is_keyboard() and event.key_state == KeyState.RELEASED:

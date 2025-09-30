@@ -1,0 +1,25 @@
+html {
+    display: flex;
+    justify-content: center;
+}
+
+form>div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95vw;
+    max-width: 900px;
+    margin: 1em auto;
+}
+form span.line {
+    flex: 1;
+    height: 0px;
+    border: 0;
+    border-bottom: 1px dashed #999;
+    margin: 0 10px;
+    padding: 0;
+}
+form input {
+    text-align: right;
+}
+ 
