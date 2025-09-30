@@ -17,9 +17,7 @@ for testing at home, you can then `flask run -h '0.0.0.0'` to start the applicat
 # deployment
 you will want to set up your raspberry pi (or other computer) to run this application at boot, to enable easy headless deployment. this is beyond the scope of this readme.
 
-# NOTE
-if you delete a field from `settings.json`, the application won't know how to recover, as it relies on the existing json to populate the settings page. i recommend downloading (or referencing) `settings.json` from this repository if yours gets corrupted.
-
-
-requires python-libinput v0.3, not currently on pypi  
+# NOTES
+* if you delete a field from `settings.json`, the application won't know how to recover, as it relies on the existing json to populate the settings page. i recommend downloading (or referencing) `settings.json` from this repository if yours gets corrupted.
+* this application requires python-libinput v0.3, not currently on pypi  
 git+https://github.com/OzymandiasTheGreat/python-libinput.git#egg=python-libinput
