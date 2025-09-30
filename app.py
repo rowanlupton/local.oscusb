@@ -5,6 +5,10 @@ from flask import request
 
 import json
 
+from usb_osc import usbOSC
+
+usbOSC() # start usb keypress handler
+
 app = Flask(__name__)
 
 @app.route("/", methods=['GET', 'POST'])
@@ -14,3 +18,4 @@ def settings():
         #return request.form['name']
     else:
         return render_template('settings.html')
+
