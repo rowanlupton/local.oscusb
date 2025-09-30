@@ -9,31 +9,40 @@ from libinput import LibInput, ContextType, EventType, KeyState
 from pythonosc import udp_client
 from threading import Thread
 
+# initialize libinput to listen to an available device
 li = LibInput(context_type=ContextType.UDEV)
 li.assign_seat('seat0')
 
 class usbOSC(Thread):
   def __init__(self):
+    # this calls our little listener in its own thread
     Thread.__init__(self)
     self.daemon = True
     self.start()
+    
   def run(self):
-    settings = 0
+    # for each key press we hear
     for event in li.events:
+      # this opens our settings.json into the settings variable
       with open('settings.json', 'r') as f:
         settings = json.load(f)
-      f.close()
-          
-      if event.type.is_keyboard() and event.key_state == KeyState.PRESSED:
-        print(event.device)
-        if event.key == settings['input_value']['value']:
-          print('go:',event.key_state)
-          
-          client = udp_client.SimpleUDPClient(settings['eos_ip']['value'], settings['eos_port']['value'])
-          client.send_message('/eos/fader/1/config/10','')
-          client.send_message(settings['osc_out']['value'],settings['osc_arg']['value'])
-        else:
-          print('wrong input')
-      elif event.type.is_keyboard() and event.key_state == KeyState.RELEASED:
-        print('release')
 
+      # if we're listening to a keyboard, and a key is pressed (not released)
+      if event.type.is_keyboard() and event.key_state == KeyState.PRESSED:
+
+        # if the key pressed matches the key we defined in our settings json file
+        if event.key == int(settings['input_value']['value']):
+          
+          # the int() function is necessary because updating settings makes
+          # everything into a string, and event.key is an int.
+          # int() appears a few times here for the same reason
+
+          # define OSC UDP client using settings from our json
+          client = udp_client.SimpleUDPClient(settings['eos_ip']['value'], int(settings['eos_port']['value']))
+
+          # the below line is required to use faders over OSC.
+          # working on a more elegant and flexible solution.
+          client.send_message('/eos/fader/1/config/10','')
+
+          # send the actual OSC string to EOS
+          client.send_message(settings['osc_out']['value'],settings['osc_arg']['value'])

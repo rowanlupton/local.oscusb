@@ -14,23 +14,26 @@ app = Flask(__name__)
 @app.route("/", methods=['GET', 'POST'])
 def settings():
     if request.method == 'POST':
+        # load our settings. this maintains file contents as it opens
         with open('settings.json', 'r') as f:
             settings = json.load(f)
+
+        # open our settings file to write. this clears out the file as it opens
         with open('settings.json', 'w') as f:
-            #print('old settings: ',settings)
             formAttrs = request.form
+            # write our POSTed attributes into the existing json structure
             for attr in request.form:
                 settings[attr]['value'] = formAttrs[attr]
-            
-            print('new settings: ',settings)
+
+            # write new settings into the original file
             json.dump(settings, f, indent=4)
-            #f.close()
-        
+
+        # redirect to regular settings page
         return redirect('/')
     else:
+        # load our settings, read-only
         with open('settings.json', 'r') as f:
             settings = json.load(f)
-        f.close()
+            
         return render_template('settings.html', settings=settings)
-        return 'hi'
 

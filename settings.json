@@ -16,7 +16,7 @@
         "descr": "osc string to send on keypress"
     },
     "osc_arg": {
-        "value": "0",
+        "value": "1",
         "descr": "osc argument to send with the string"
     }
 }
