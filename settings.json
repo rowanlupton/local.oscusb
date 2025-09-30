@@ -1,22 +1,22 @@
 {
     "eos_ip": {
-	"value": "192.168.0.157",
-	"descr": "ip address of your eos console"
+        "value": "192.168.0.157",
+        "descr": "ip address of your eos console"
     },
     "eos_port": {
-	"value": 8000,
-	"descr": "UDP RX port of your eos console"
+        "value": "8000",
+        "descr": "UDP RX port of your eos console"
     },
     "input_value": {
-	"value": 57,
-	"descr": "input value to listen for"
+        "value": "57",
+        "descr": "input value to listen for"
     },
     "osc_out": {
-	"value": "/eos/fader/1/2/fire",
-	"descr": "osc string to send on keypress"
+        "value": "/eos/fader/1/2/fire",
+        "descr": "osc string to send on keypress"
     },
     "osc_arg": {
-	"value": 1,
-	"descr": "osc argument to send with the string"
+        "value": "0",
+        "descr": "osc argument to send with the string"
     }
 }
