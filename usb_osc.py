@@ -27,22 +27,25 @@ class usbOSC(Thread):
       with open('settings.json', 'r') as f:
         settings = json.load(f)
 
-      # if we're listening to a keyboard, and a key is pressed (not released)
-      if event.type.is_keyboard() and event.key_state == KeyState.PRESSED:
-
+      # if we're listening to a keyboard
+      if event.type.is_keyboard():
         # if the key pressed matches the key we defined in our settings json file
         if event.key == int(settings['input_value']['value']):
-          
           # the int() function is necessary because updating settings makes
           # everything into a string, and event.key is an int.
           # int() appears a few times here for the same reason
 
           # define OSC UDP client using settings from our json
           client = udp_client.SimpleUDPClient(settings['eos_ip']['value'], int(settings['eos_port']['value']))
-
+          
           # the below line is required to use faders over OSC.
           # working on a more elegant and flexible solution.
           client.send_message('/eos/fader/1/config/10','')
+          if event.key_state == KeyState.PRESSED:
+            
+            # send the actual OSC string to EOS
+            client.send_message(settings['osc_out']['value'],settings['osc_arg']['value'])
 
-          # send the actual OSC string to EOS
-          client.send_message(settings['osc_out']['value'],settings['osc_arg']['value'])
+          elif event.key_state == KeyState.RELEASED and settings['osc_arg_release']['value'] != "":
+            print('release state')
+            client.send_message(settings['osc_out']['value'],settings['osc_arg_release']['value'])
