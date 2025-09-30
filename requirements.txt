@@ -5,6 +5,8 @@ importlib-metadata==8.7.0
 itsdangerous==2.2.0
 jinja2==3.1.6
 markupsafe==3.0.3
+python-libinput==0.3.0a0
 python-osc==1.8.3
 werkzeug==3.1.3
 zipp==3.23.0
+git+https://github.com/OzymandiasTheGreat/python-libinput.git#egg=python-libinput

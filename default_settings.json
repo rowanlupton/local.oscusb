@@ -1,0 +1,7 @@
+{
+    "eos_ip": "192.168.0.157",
+    "eos_port": 8000,
+    "input_value": 57,
+    "osc_out": "/eos/fader/1/2/fire",
+    "osc_arg": 1
+}
