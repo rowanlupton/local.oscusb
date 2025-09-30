@@ -1,0 +1,6 @@
+{
+    "eos_ip": "127.0.0.1",
+    "eos_port": "8000",
+    "input_value": " ",
+    "osc_out": "/eos/key/go_0"
+}
