@@ -12,7 +12,9 @@ If you use a [BetterGoButton](https://bettergobutton.com/), note that for any ho
 If you want to use this for a `Go` button, use `/eos/key/go 0`, with an osc argument of `1` and a blank key release field. This will only send the g-o once per key press. (If for some reason you want to g-o on press and release, you can set 1 as your key release value. I don't know why you would want this.)  
 
 # download/run notes
-you'll need a python3 virtual environment. after setting this up ( `virtualenv -p python3 venv` ) and enabling it ( `. venv/bin/activate` ), make sure to download the requirements! `pip install -r requirements.txt`
+first, copy `default_settings.json` to a file called `settings.json`.  
+next, you'll need a python3 virtual environment. after setting this up ( `virtualenv -p python3 venv` ) and enabling it ( `. venv/bin/activate` ), make sure to download the requirements! `pip install -r requirements.txt`
+
 for testing at home, you can then `gunicorn --bind 0.0.0.0:5000 app:app` to start the application. access via hostname, or your computer's ip. e.g. `http://localhost:5000` or, on the computer running it, `0.0.0.0:5000`. this will not work on windows, and likely not on macos.
 
 # deployment
