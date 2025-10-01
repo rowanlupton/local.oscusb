@@ -21,7 +21,6 @@ class usbOSC(Thread):
     self.start()
     
   def run(self):
-    print('hello')
     # for each key press we hear
     for event in li.events:
       # this opens our settings.json into the settings variable
