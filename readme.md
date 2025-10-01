@@ -13,10 +13,10 @@ If you want to use this for a `Go` button, use `/eos/key/go 0`, with an osc argu
 
 # download/run notes
 you'll need a python3 virtual environment. after setting this up ( `virtualenv -p python3 venv` ) and enabling it ( `. venv/bin/activate` ), make sure to download the requirements! `pip install -r requirements.txt`
-for testing at home, you can then `flask run -h '0.0.0.0'` to start the application. access by ip or hostname
+for testing at home, you can then `gunicorn --bind 0.0.0.0:5000 app:app` to start the application. access via hostname, or your computer's ip. e.g. `http://localhost:5000` or, on the computer running it, `0.0.0.0:5000`. this will not work on windows, and likely not on macos.
 
 # deployment
-you will want to set up your raspberry pi (or other computer) to run this application at boot, to enable easy headless deployment. this is beyond the scope of this readme.
+you will want to set up your raspberry pi (or other computer) to run this application at boot, and a reverse proxy if you don't want to mess around with port numbers. i use systemd and nginx.
 
 # NOTES
 * if you delete a field from `settings.json`, the application won't know how to recover, as it relies on the existing json to populate the settings page. i recommend downloading (or referencing) `settings.json` from this repository if yours gets corrupted.
