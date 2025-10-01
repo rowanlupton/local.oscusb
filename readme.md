@@ -1,6 +1,6 @@
 utility to accept keyboard input and translate to osc over network
 
-![screenshot of settings page](img/screenshot.png)
+![screenshot of settings page](img/screenshot.png) ![screenshot of mobile settings page](img/screenshot_mobile.png)
 
 # tips and tricks
 for simple fader control, you can use `/eos/fader/p/n/fire` where `p` is your fader page and `n` is your fader number on that page. Fire denotes that it will act as though accessing the bump button, rather than setting a level directly.
