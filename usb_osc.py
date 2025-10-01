@@ -47,5 +47,4 @@ class usbOSC(Thread):
             client.send_message(settings['osc_out']['value'],settings['osc_arg']['value'])
 
           elif event.key_state == KeyState.RELEASED and settings['osc_arg_release']['value'] != "":
-            print('release state')
             client.send_message(settings['osc_out']['value'],settings['osc_arg_release']['value'])
