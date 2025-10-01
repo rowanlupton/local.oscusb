@@ -21,6 +21,7 @@ class usbOSC(Thread):
     self.start()
     
   def run(self):
+    print('hello')
     # for each key press we hear
     for event in li.events:
       # this opens our settings.json into the settings variable
@@ -40,11 +41,21 @@ class usbOSC(Thread):
           
           # the below line is required to use faders over OSC.
           # working on a more elegant and flexible solution.
-          client.send_message('/eos/fader/1/config/10','')
+          try:
+            client.send_message('/eos/fader/1/config/10','')
+          except Exception as e:
+            print(f"Error: an unhandled error occurred - {e}")
+            
           if event.key_state == KeyState.PRESSED:
             
             # send the actual OSC string to EOS
-            client.send_message(settings['osc_out']['value'],settings['osc_arg']['value'])
-
+            try:
+              client.send_message(settings['osc_out']['value'],settings['osc_arg']['value'])
+            except Exception as e:
+              print(f"Error: an unhandled error occurred - {e}")
+            
           elif event.key_state == KeyState.RELEASED and settings['osc_arg_release']['value'] != "":
-            client.send_message(settings['osc_out']['value'],settings['osc_arg_release']['value'])
+            try:
+              client.send_message(settings['osc_out']['value'],settings['osc_arg_release']['value'])
+            except Exception as e:
+              print(f"Error: an unhandled error occurred - {e}")

@@ -5,10 +5,6 @@ from flask import request
 
 import json
 
-from usb_osc import usbOSC
-
-usbOSC() # start usb keypress handler
-
 app = Flask(__name__)
 
 @app.route("/", methods=['GET', 'POST'])
@@ -37,3 +33,5 @@ def settings():
             
         return render_template('settings.html', settings=settings)
 
+if __name__ == "__main__":
+    app.run(host='0.0.0.0')
