@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to serve local.oscusb
+After=network.target
+
+[Service]
+User=rowan
+Group=www-data
+WorkingDirectory=/home/rowan/local.oscusb
+Environment="PATH=/home/rowan/local.oscusb/venv/bin"
+ExecStart=/home/rowan/local.oscusb/venv/bin/gunicorn app:app
+
+[Install]
+WantedBy=multi-user.target
