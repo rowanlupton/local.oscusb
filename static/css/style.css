@@ -59,3 +59,21 @@ form input[type=submit]:active {
     transition: 0.2s;
 }
  
+
+
+@media screen and (width <1000px) {
+    html {
+	width: 100vw;
+	#font-size: 0.5rem;
+    }
+    form>div {
+	width: 100vw;
+	flex-direction: column;
+    }
+    form>div label {
+	margin: 5px;
+    }
+    form>div input {
+	max-width: 90vw;
+    }
+ }
